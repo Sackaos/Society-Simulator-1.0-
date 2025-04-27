@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://r243fxr7dfim"]
+
+[ext_resource type="PackedScene" uid="uid://cb0up1davhya0" path="res://Scenes/player.tscn" id="1_7ycst"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_c1w88"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r150o"]
+size = Vector2(20, 20)
+
+[node name="environment" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_7ycst")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.033267, 1, -0.112078)
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="staticbody" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/staticbody"]
+shape = SubResource("WorldBoundaryShape3D_c1w88")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_r150o")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.854162, 0.327509, 0.403913, -0.384859, -0.124206, 0.91458, 0.349701, -0.936649, 0.0199532, 8.26201, 7.35182, 3.3019)
+light_energy = 11.415
+spot_range = 20.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.742631, 0.669701, 0, -0.669701, 0.742631, 0, 13.0304, 0)

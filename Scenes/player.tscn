@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cb0up1davhya0"]
+
+[ext_resource type="Script" uid="uid://ba7ebajknll7h" path="res://Scenes/player.gd" id="1_v0iea"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cvnsp"]
+radius = 0.45
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6t5aa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vgqql"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fkybt"]
+albedo_color = Color(0.180005, 0.180005, 0.180005, 1)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_v0iea")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_cvnsp")
+
+[node name="CharacterModel" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterModel"]
+mesh = SubResource("CapsuleMesh_6t5aa")
+skeleton = NodePath("../..")
+
+[node name="VR goggles" type="MeshInstance3D" parent="CharacterModel"]
+transform = Transform3D(0.775752, 0, 0, 0, 0.5025, 0, 0, 0, 0.959823, 0.0029223, 0.593137, 0.387136)
+mesh = SubResource("BoxMesh_vgqql")
+surface_material_override/0 = SubResource("StandardMaterial3D_fkybt")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, -2.66625e-16, 8.9407e-08, 1.20643e-08, 0.990854, 0.134937, -8.85892e-08, 0.134937, -0.990854, 0.97153, 2.55923, -4.99523)
